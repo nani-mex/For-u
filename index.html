@@ -5,48 +5,53 @@
   <title>I LIKE U Heart</title>
   <style>
     body {
-      background-color: #F8D1E0;
-      color: #AA7A79;
+      background-color: #FBCCE0;
+      color: #BED7D1;
       font-family: Arial, sans-serif;
       text-align: center;
       overflow: hidden;
+      margin: 0;
+      padding: 0;
+      position: relative;
     }
+
     .heart {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
+
     span {
       position: absolute;
-      white-space: nowrap;
       font-size: 14px;
-      animation: spin 10s linear infinite;
+      white-space: nowrap;
     }
-    @keyframes spin {
-      100% {
-        transform: rotate(360deg);
-      }
+
+    /* ดาววิ้งๆ */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
     }
   </style>
-// สร้างดาววิ้งๆ กระจายทั่วหน้าจอ
-const numStars = 100;
-
-for (let i = 0; i < numStars; i++) {
-  const star = document.createElement('div');
-  star.className = 'star';
-  star.style.top = `${Math.random() * window.innerHeight}px`;
-  star.style.left = `${Math.random() * window.innerWidth}px`;
-  star.style.animationDuration = `${1 + Math.random() * 2}s`;
-  document.body.appendChild(star);
-}
 </head>
 <body>
   <div class="heart" id="heart"></div>
 
   <script>
+    // วาดข้อความหัวใจ
     const heart = document.getElementById('heart');
-    const text = 'I LIKE U BOO';
+    const text = 'I LIKE YOU BOO ';
     const count = 100;
 
     for (let i = 0; i < count; i++) {
@@ -59,6 +64,17 @@ for (let i = 0; i < numStars; i++) {
       span.style.left = `${x}px`;
       span.style.top = `${y}px`;
       heart.appendChild(span);
+    }
+
+    // สร้างดาววิ้งๆ
+    const numStars = 100;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * window.innerHeight}px`;
+      star.style.left = `${Math.random() * window.innerWidth}px`;
+      star.style.animationDuration = `${1 + Math.random() * 2}s`;
+      document.body.appendChild(star);
     }
   </script>
 </body>
